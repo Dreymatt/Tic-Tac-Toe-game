@@ -24,71 +24,48 @@ html {
  * Customize the background color to match your design.
  */
 body {
-  margin: 10px;
-  background-color: rgb(2, 99, 2);
-}
-
-.Parent {
-  justify-self: center;
-  margin:0;
+  margin: 5px;
 }
 
 h1 {
-  margin: 0;
-  text-shadow: 2px 6px 10px #000;
-  color: aquamarine;
+text-align: center;
+margin: 0;
+}
+#player1 {
+  text-align: center;
+  font-weight: 10%;
+  margin-top: 0;
 }
 
-#container {
-  margin-top: 10px;
+#gameContainer {
+  margin-top: 3px;
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  border: 2px solid #000;
+  width: 350px;
+  height: 350px;
+  align-items: center;
   justify-items: center;
-  gap: 10px;
-
+  margin-left: auto;
+  margin-right: auto;
 
 }
-
-#container img {
+#gameContainer .cell {
   width: 100px;
   height: 100px;
-
-}
-
-@media (max-width:390px) {
-  #container {
-    grid-template-columns: 1fr;
-
-  }
-
-  #container img {
-    width: 300px;
-    height: 300px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 15px 10px;
-
-  }
-}
-
-@media (min-width: 400px) and (max-width: 1500px) {
-  #container {
-    grid-template-columns: 1fr 1fr 1fr;
-     gap: 20px 20px;
-  }
-  #container img{
-     border-radius: 5px;
-    box-shadow: 3px 3px 8px 5px;
-    width: 380px;
-    height: 380px;
-
-  }
-}
-
-#btn{
-  background-color: rgba(82, 241, 8, 0.897);
+  font-size: 90px;
   border-radius: 5px;
-  border-color: gray;
+  text-align: center;
+  border: 1px solid;
 }
+@media (max-width: 390px){
+#gameContainer {
+  background-color: lightgreen;
 
+
+}
+}
 
 ::-moz-selection {
   background: #b3d4fc;

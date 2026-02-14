@@ -1,44 +1,70 @@
-// const container = document.getElementById('container');
-// const noOfImages = document.getElementById('noOfImages');
-// const btn = document.getElementById('btn');
-// const Breed = document.getElementById('Breed');
+const cells = document.querySelectorAll(".cell")
 
-//  function getPicture() {
-//   const request = new XMLHttpRequest();
+const winPatterns = [
+  [0, 1, 2], //a, b, c
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
-//   request.open('GET',`https://api.thecatapi.com/v1/images/search?limit=${noOfImages.value}&category_id=${Breed.value}&api_key=live_u670Pzg1bwPwNHOOQgJVNs3721S8Y4sB4M8kvlp0skF4LDbQf3Bu69DP0jjzkPWE`, false);
+const board = [
+  "", "", "", "", "", "", "", "", ""
+]
+let currentPlayer = "X";
 
-//   request.send();
+let gameActive = true;
 
-//   const response = JSON.parse(request.responseText);
-//   console.log(response)
-//   const container = document.getElementById('container');
+cells.forEach(
+  (cell, index) => {
+    cell.addEventListener("click", () => {
+      if (board[index] !== "")
+        return;
+      board[index] = currentPlayer;
+      cell.textContent = currentPlayer;
 
-//   container.innerHTML = `
-//   ${response.map((cat) => {
-//     return `<img alt="${cat.width}" src="${cat.url}" />`
-//   }).join("")}
-//   `;
-// }
-const container = document.getElementById('container');
-const noOfImages = document.getElementById('noOfImages');
-const btn = document.getElementById('btn');
-const Breed = document.getElementById('Breed');
+      if (checkWinner())
+      return;
+      switchPlayer();
 
-async function getPicture() {
-  try {
-    const myResponse = await fetch(`https://api.thecatapi.com/v1/images/search?limit=${noOfImages.value}&breed_id=${Breed.value}&api_key=live_u670Pzg1bwPwNHOOQgJVNs3721S8Y4sB4M8kvlp0skF4LDbQf3Bu69DP0jjzkPWE`);
-    const catPicture = await myResponse.json();
-    console.log(typeof catPicture);
-    container.innerHTML = `
-    ${catPicture.map((cat) => {
-      return `<img src="${cat.url}" />`
-  }).join("")}
-  `;
-  } catch (err) {
-    console.log(err);
+      if ( checkDraw()){
+
+      }
+
+    });
   }
+);
+
+function switchPlayer() {
+  if (currentPlayer === "X") {
+    currentPlayer = "O";
+    document.getElementById("player1").textContent = "Player2";
+  } else {
+    currentPlayer = "X";
+    document.getElementById("player1").textContent = "Player1";
+  }
+};
+
+function checkWinner() {
+  for (let pattern of winPatterns) {
+      let a = pattern[0];
+      let b = pattern[1];
+      let c = pattern[2];
+    if (
+      board[a] !== "" && board[a] === board[b] && board[a] === board[c]
+    ) {
+      alert(board[a] + " Wins!")
+      console.log(board[a] + " wins!");
+      return true;
+    }
+  } return false;
 }
-
-btn.addEventListener('click', getPicture)
-
+ function checkDraw(){
+  if (board.every(cell => cell !== "")) {
+    alert("Draw!")
+    return true;
+  }
+    }
