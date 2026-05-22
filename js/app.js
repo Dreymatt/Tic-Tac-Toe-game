@@ -1,5 +1,19 @@
+
+// let index = 9;
+// let columns = 3;
+// let row = Math.floor(index / columns);
+// let col = index % columns;
+// if(!board[index.value])
+//   console.log(row, col);
+// function placeMark(index, player){
+//   board[index] = player;
+// }
+
 const cells = document.querySelectorAll(".cell")
 
+const board = [
+  "", "", "", "", "", "", "", "", ""
+];
 const winPatterns = [
   [0, 1, 2], //a, b, c
   [3, 4, 5],
@@ -11,9 +25,6 @@ const winPatterns = [
   [2, 4, 6],
 ];
 
-const board = [
-  "", "", "", "", "", "", "", "", ""
-]
 let currentPlayer = "X";
 
 let gameActive = true;
@@ -26,14 +37,19 @@ cells.forEach(
       board[index] = currentPlayer;
       cell.textContent = currentPlayer;
 
+      console.log(board);
       if (checkWinner())
       return;
-      switchPlayer();
-
+      // switchPlayer();
+      
+      computerMove();
+      
+      console.log(board);
+      
       if ( checkDraw()){
-
+        
       }
-
+      
     });
   }
 );
@@ -61,10 +77,34 @@ function checkWinner() {
       return true;
     }
   } return false;
+   
+  
 }
  function checkDraw(){
   if (board.every(cell => cell !== "")) {
     alert("Draw!")
     return true;
   }
+    };
+  function computerMove(){
+    const emptySquares = [];
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === ""){
+        emptySquares.push(i);
+      }
     }
+    const randomIndex = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+    board[randomIndex] = "O";
+    renderBoard()
+    checkWinner()
+  }
+  function renderBoard(){
+    cells.forEach((square, index)=>{
+      square.textContent = board[index]
+    })
+  };
+  function reset(){
+    board.fill("");
+  }
+
+
