@@ -10,7 +10,7 @@
 // }
 
 const cells = document.querySelectorAll(".cell")
-
+const resetBtn = document.getElementsByTagName("button")
 const board = [
   "", "", "", "", "", "", "", "", ""
 ];
@@ -38,18 +38,17 @@ cells.forEach(
       cell.textContent = currentPlayer;
 
       console.log(board);
-      if (checkWinner())
-      return;
-      // switchPlayer();
-      
       computerMove();
-      
-      console.log(board);
-      
-      if ( checkDraw()){
-        
+
+      // switchPlayer();
+
+
+      if (checkDraw()) {
+        alert("Draw!")
+
       }
-      
+
+
     });
   }
 );
@@ -66,45 +65,50 @@ function switchPlayer() {
 
 function checkWinner() {
   for (let pattern of winPatterns) {
-      let a = pattern[0];
-      let b = pattern[1];
-      let c = pattern[2];
+    let a = pattern[0];
+    let b = pattern[1];
+    let c = pattern[2];
     if (
       board[a] !== "" && board[a] === board[b] && board[a] === board[c]
     ) {
       alert(board[a] + " Wins!")
-      console.log(board[a] + " wins!");
+      reset()
       return true;
     }
   } return false;
-   
-  
+
+
 }
- function checkDraw(){
+function checkDraw() {
   if (board.every(cell => cell !== "")) {
-    alert("Draw!")
+    reset()
     return true;
   }
-    };
-  function computerMove(){
-    const emptySquares = [];
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === ""){
-        emptySquares.push(i);
-      }
+};
+function computerMove() {
+  const emptySquares = [];
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === "") {
+      emptySquares.push(i);
     }
-    const randomIndex = emptySquares[Math.floor(Math.random() * emptySquares.length)];
-    board[randomIndex] = "O";
-    renderBoard()
-    checkWinner()
   }
-  function renderBoard(){
-    cells.forEach((square, index)=>{
-      square.textContent = board[index]
-    })
-  };
-  function reset(){
-    board.fill("");
-  }
+  const randomIndex = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+  board[randomIndex] = "O";
+  renderBoard()
+  checkWinner()
+}
+function renderBoard() {
+  cells.forEach((square, index) => {
+    square.textContent = board[index]
+  })
+};
+function reset() {
+  board.fill("");
+  cells.forEach((square) => {
+    square.textContent = board[""]
+  })
+}
+
+
 
 

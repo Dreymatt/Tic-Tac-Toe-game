@@ -66,6 +66,11 @@ margin: 0;
 
 }
 }
+.resetBtn{
+  display:block;
+  margin:1rem auto;
+  background-color: lime;
+}
 
 ::-moz-selection {
   background: #b3d4fc;
