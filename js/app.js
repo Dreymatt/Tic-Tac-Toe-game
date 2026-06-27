@@ -71,13 +71,12 @@ function checkWinner() {
     if (
       board[a] !== "" && board[a] === board[b] && board[a] === board[c]
     ) {
+      confetti()
       alert(board[a] + " Wins!")
       reset()
       return true;
     }
   } return false;
-
-
 }
 function checkDraw() {
   if (board.every(cell => cell !== "")) {
@@ -108,7 +107,4 @@ function reset() {
     square.textContent = board[""]
   })
 }
-
-
-
 

@@ -42,13 +42,14 @@ margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  border: 2px solid #000;
+  border: 10px solid #85ff6d;
   width: 350px;
   height: 350px;
   align-items: center;
   justify-items: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 1rem;
 
 }
 #gameContainer .cell {
@@ -57,19 +58,24 @@ margin: 0;
   font-size: 90px;
   border-radius: 5px;
   text-align: center;
-  border: 1px solid;
+  background-color: rgb(232, 197, 236);
+  color: #85ff6d;
 }
 @media (max-width: 390px){
 #gameContainer {
-  background-color: lightgreen;
+  background-color: #65ff7a;
 
 
 }
 }
-.resetBtn{
-  display:block;
-  margin:1rem auto;
-  background-color: lime;
+h1{
+  border: 1px solid;
+  border-radius: 2rem;
+  background-color: rgb(218, 164, 218);
+  color:white;
+  width: 30rem;
+  margin: 0 auto;
+
 }
 
 ::-moz-selection {
